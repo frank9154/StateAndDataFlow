@@ -5,39 +5,35 @@
 //  Created by Alexey Efimov on 06.03.2024.
 //
 
+import Observation
 import Foundation
-import Combine
 
-final class ContentViewViewModel: ObservableObject {
-    let objectWillChange = ObservableObjectPublisher()
-    var counter = 3
-    var buttonTitle = "Start"
-    
+final class ContentViewViewModel: Observable {
+    @Published var counter: Int = 3
+    @Published var buttonTitle: String = "Start"
+
     private var timer: Timer?
-    
+
     func startTimer() {
         if counter > 0 {
             timer = Timer.scheduledTimer(
-                timeInterval: 1,
-                target: self,
-                selector: #selector(updateCounter),
-                userInfo: nil,
+                withTimeInterval: 1,
                 repeats: true
-            )
+            ) { [weak self] _ in
+                self?.updateCounter()
+            }
         }
         
         buttonDidTapped()
     }
-    
-    @objc private func updateCounter() {
+
+    private func updateCounter() {
         if counter > 0 {
             counter -= 1
         } else {
             killTimer()
             buttonTitle = "Reset"
         }
-        
-        objectWillChange.send()
     }
     
     private func killTimer() {
@@ -52,7 +48,6 @@ final class ContentViewViewModel: ObservableObject {
         } else {
             buttonTitle = "Wait..."
         }
-        
-        objectWillChange.send()
     }
 }
+
