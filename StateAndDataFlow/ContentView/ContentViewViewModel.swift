@@ -8,9 +8,10 @@
 import Observation
 import Foundation
 
-final class ContentViewViewModel: Observable {
-    @Published var counter: Int = 3
-    @Published var buttonTitle: String = "Start"
+@Observable
+final class ContentViewViewModel {
+    var counter: Int = 3
+    var buttonTitle: String = "Start"
 
     private var timer: Timer?
 
