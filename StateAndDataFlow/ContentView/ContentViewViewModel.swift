@@ -2,7 +2,7 @@
 //  ContentViewViewModel.swift
 //  StateAndDataFlow
 //
-//  Created by Alexey Efimov on 06.03.2024.
+//
 //
 
 import Observation
