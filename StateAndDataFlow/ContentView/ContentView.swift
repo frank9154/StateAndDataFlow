@@ -9,8 +9,8 @@ import SwiftUI
 
 struct ContentView: View {
     //@EnvironmentObject private var contentViewVM: ContentViewViewModel
-    @State private var contentViewVM: ContentViewViewModel
-    @State private var loginViewVM: LoginViewViewModel
+    @State var contentViewVM: ContentViewViewModel
+    @State var loginViewVM: LoginViewViewModel
     
     var body: some View {
         VStack {
@@ -31,8 +31,7 @@ struct ContentView: View {
 }
 
 #Preview {
-    ContentView()
-        
+    ContentView(contentViewVM: <#ContentViewViewModel#>, loginViewVM: <#LoginViewViewModel#>)
 }
 
 struct ButtonView: View {
